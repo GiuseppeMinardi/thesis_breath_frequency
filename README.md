@@ -2,94 +2,25 @@
 
 Estimate Ventilatory Threshold from Respiratory Rate
 
-## Git
+## Descrizione del Progetto
 
-The project is going to be stored in https://github.com/GiuseppeMinardi/thesis_breath_frequency.git. Do the following to initialize the repo:
+Il progetto consiste in uno studio statistico per una tesi di specializzazione in Medicina dello Sport. L'obiettivo è validare l'utilizzo della dinamica della frequenza respiratoria e della sua variabilità come metodo non invasivo per stimare le soglie ventilatorie ($VT_1$ e $VT_2$) durante uno sforzo fisico incrementale, confrontandole con il Gold Standard dei gas espirati.
 
-```plain
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/GiuseppeMinardi/thesis_breath_frequency.git
-git push -u origin main
-```
+## Analisi
 
-## Project Structure
+### Validazione delle Soglie Ventilatorie
 
-```plain
-.
-├── data/                 # Data storage
-│   ├── external/         # Data from external sources
-│   ├── processed/        # Cleaned/transformed data
-│   ├── raw/              # Original, immutable data
-├── notebooks/            # Jupyter notebooks for analysis
-├── report/               # LaTeX reporting
-│   ├── figures/          # Generated plots
-│   ├── tables/           # Generated tables
-│   └── report.pdf        # PDF report
-│   └── report.tex        # LaTeX template
-├── src/                  # Python package for reusable code
-├── logs/                 # Logs of the package
-├── environment.yml       # Conda environment
-├── plot_style.mlpstyle   # Personal style for the plots
-├── ruff.toml             # Ruff configurations
-└── pyproject.toml        # Python project configuration
-```
+L'obiettivo è verificare la correlazione tra le soglie stimate tramite frequenza respiratoria e quelle ottenute tramite test cardiopolmonare tradizionale. Le soglie respiratorie sono individuate tramite interpolazione polinomiale e calcolo della derivata seconda per trovare i punti di massima accelerazione (validazione del metodo gia' fornito).
 
-All folders starting with a dot (e.g. `.github`) are configurations folders and should not be considered.
- The important folder is `report` since it contains the final report and `report/figures` since it contains all the figures produced in high quality.
+#### Test Statistici
 
-## Setup
+* **Correlazione**: Utilizzo della correlazione di Pearson o Spearman, valutando la scelta in base alla distribuzione dei dati data la dimensione ridotta del campione ($n=20$). Si valuta anche di usare altri metodi per rendere piu' robusta l'analisi data la bassa numerosita' del campione e per fornire anche una stima dell'errore.
+* **Accordo tra i metodi**: Creazione di **Bland-Altman Plot** per valutare l'accordo tra il nuovo metodo e il Gold Standard, con relativo calcolo del *Standard Error of Estimate* (SEE).
 
-This project uses conda for environment management.
+### Studio della Variabilità Respiratoria (BRV)
 
-```bash
-# Environment should be created automatically during project generation
-# If not, create it manually:
-conda env create -f environment.yml
+Lo studio analizza come la variabilità del respiro si modifichi all'aumentare dell'intensità dell'esercizio.
 
-# Activate the environment
-conda activate thesis_breath_frequency
-```
-
-## Usage
-
-1. **Data Storage**:
-   - Place raw data in `data/raw/`
-   - Store external data in `data/external/`
-   - Save processed datasets in `data/processed/`
-
-2. **Analysis**:
-   - Create Jupyter notebooks in `notebooks/` for exploration and analysis
-   - Write reusable functions in the `thesis_breath_frequency/` package
-
-3. **Reporting**:
-   - Generate figures and tables from your analysis
-   - Save figures to `report/figures/`
-   - Save tables to `report/tables/`
-   - Edit `report/report.tex` to document your findings
-   - Compile the LaTeX report using your preferred LaTeX editor or command line:
-
-     ```bash
-     cd report
-     pdflatex report.tex
-     ```
-
-## Statistical Tools
-
-This project is set up with:
-
-- PyMC and ArviZ for Bayesian modeling
-- NumPy, SciPy, pandas for data manipulation
-- scikit-learn for machine learning
-- statsmodels for statistical models
-- Matplotlib and Seaborn for visualization
-
-## Author
-
-Giuseppe Minardi
-
-## Version
-
-0.1.0
+* **Analisi nel Dominio del Tempo**: Calcolo del parametro **RMSSD** (Root Mean Square of Successive Differences) applicato agli intervalli respiro-su-respiro ($T_{tot}$).
+* **Analisi nelle Zone Metaboliche**: Dimostrazione della riduzione della variabilità nel passaggio dalla Zona 1 (aerobica) alla Zona 3 (massimale).
+* **Parametri Aggiuntivi**: Valutazione dell'andamento del Volume Corrente ($V_t$) e della Ventilazione al minuto ($V_e$) per verificare se l'integrazione di queste grandezze possa migliorare l'accuratezza predittiva del metodo.
