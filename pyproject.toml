@@ -1,0 +1,19 @@
+[project]
+name = "thesis_breath_frequency"
+version = "0.1.0"
+description = "Estimate Ventilatory Threshold from Respiratory Rate"
+authors = [
+    { name = "Giuseppe Minardi", email = "giuseppe.minardi95@gmail.com" },
+]
+readme = "README.md"
+keywords = ["statistics", "analysis", "data-science"]
+
+requires-python = ">=3.12"
+
+[build-system]
+requires = ["uv_build>=0.9.28,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["thesis_breath_frequency*"]
