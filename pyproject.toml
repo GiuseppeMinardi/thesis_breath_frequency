@@ -9,6 +9,11 @@ readme = "README.md"
 keywords = ["statistics", "analysis", "data-science"]
 
 requires-python = ">=3.12"
+dependencies = [
+    "cool-styles>=0.3.0",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.9.28,<0.10.0"]
@@ -17,3 +22,8 @@ build-backend = "uv_build"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["thesis_breath_frequency*"]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+]
