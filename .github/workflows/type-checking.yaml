@@ -27,7 +27,7 @@ jobs:
         run: uv sync
 
       - name: Format with ruff (via uvx)
-        run: uvx ruff format src/ --exit-zero
+        run: uvx ruff format src/
 
       - name: Run ruff lint (via uvx)
         run: uvx ruff check src/
