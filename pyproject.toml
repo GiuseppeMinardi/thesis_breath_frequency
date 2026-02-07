@@ -11,8 +11,14 @@ keywords = ["statistics", "analysis", "data-science"]
 requires-python = ">=3.12"
 dependencies = [
     "cool-styles>=0.3.0",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.2",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.0",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.12.0",
+    "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
 ]
 
 [build-system]
@@ -26,4 +32,5 @@ include = ["thesis_breath_frequency*"]
 [dependency-groups]
 dev = [
     "ipykernel>=7.1.0",
+    "mypy>=1.19.1",
 ]
