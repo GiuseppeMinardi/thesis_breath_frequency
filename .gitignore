@@ -8,6 +8,23 @@
 pip-log.txt
 pip-delete-this-directory.txt
 
+# LaTeX auxiliary files
+report/*.aux
+report/*.bbl
+report/*.bcf
+report/*.blg
+report/*.log
+report/*.out
+report/*.run.xml
+report/*.toc
+
+# LaTeX temporary files
+report/*.tmp
+report/*.synctex.gz
+
+# Keep the PDF
+!report/report.pdf
+
 __pycache__/
 
 # Unit test / coverage reports

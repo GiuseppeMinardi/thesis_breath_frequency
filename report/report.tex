@@ -1,9 +1,9 @@
 \documentclass[10pt, oneside]{article}
 
-% Babel is used fot language
+% Babel is used for language
 \usepackage[english]{babel}
 
-% Geometry is used for margin and general lenghts
+% Geometry is used for margin and general lengths
 \usepackage[a4paper, width=160mm]{geometry}
 
 % Font packages
@@ -14,7 +14,7 @@
 % Adjust headheight for fancyhdr
 \setlength{\headheight}{15pt}
 
-% Fancyhdr is used fr headers and footers
+% Fancyhdr is used for headers and footers
 % This is for oneside documents
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -66,7 +66,7 @@
 % Trademark symbols and special characters
 \usepackage{textcomp}
 
-% orizzontal enumration
+% horizontal enumeration
 \usepackage[inline]{enumitem}
 
 % Links
@@ -79,6 +79,13 @@
             pdfauthor={ Giuseppe Minardi },
             pdftitle={ Estimate Ventilatory Threshold from Respiratory Rate },
             pdfcreator={ Giuseppe Minardi }]{hyperref}
+
+% Bookmark for outline support
+\usepackage{bookmark}
+
+% Bibliography
+\usepackage[backend=biber, style=authoryear]{biblatex}
+\addbibresource{references.bib}  % Add your bibliography file
 
 % Code text formatting
 \usepackage{listings}
@@ -112,35 +119,19 @@
 \author{ Giuseppe Minardi - \href{mailto:giuseppe.minardi95@gmail.com}{ giuseppe.minardi95@gmail.com } }
 %\date{}
 
-
-\begin{document}\sloppy
+\begin{document}
 \maketitle
 
 \begin{abstract}
     Estimate Ventilatory Threshold from Respiratory Rate
+
+    This thesis explores the relationship between respiratory rate and ventilatory threshold, drawing insights from seminal works \parencite{wasserman1994principles, beaver1986ventilatory}.
 \end{abstract}
 
 \tableofcontents
 
+% Your document content goes here
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\printbibliography
 
 \end{document}

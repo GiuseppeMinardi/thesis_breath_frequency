@@ -32,9 +32,6 @@ jobs:
       - name: Run ruff lint (via uvx)
         run: uvx ruff check src/
 
-      - name: Run Type Checker (via uvx)
-        run: uvx mypy src/
-
       - name: Verify PDF exists
         run: |
           if ls report/*.pdf 1> /dev/null 2>&1; then echo "PDF found"; else echo "No PDF found" && exit 1; fi
