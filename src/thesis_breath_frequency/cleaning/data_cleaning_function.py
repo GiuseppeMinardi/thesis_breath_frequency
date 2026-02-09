@@ -1,3 +1,17 @@
+"""Load and process Excel respiratory data for the thesis project.
+
+This module provides helpers to read Excel files containing multiple
+patient sheets, normalize and convert columns, and return a single
+concatenated :class:`pandas.DataFrame` ready for downstream analysis.
+
+Functions
+---------
+_get_skip_rows
+    Return the number of rows to skip for known sheet names.
+load_and_process_excel
+    Load an Excel file, process each valid sheet and concatenate results.
+"""
+
 from pathlib import Path
 
 from openpyxl import load_workbook
