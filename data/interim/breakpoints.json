@@ -1,0 +1,439 @@
+{
+    "FG": {
+        "AT": [
+            {
+                "index": 127,
+                "time_seconds": 37560,
+                "work": 124.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 147,
+                "time_seconds": 40380,
+                "work": 139.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 193,
+                "time_seconds": 46380,
+                "work": 173.0
+            }
+        ]
+    },
+    "VR": {
+        "AT": [
+            {
+                "index": 36,
+                "time_seconds": 16980,
+                "work": 99.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 141,
+                "time_seconds": 30540,
+                "work": 249.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 149,
+                "time_seconds": 31020,
+                "work": 255.0
+            }
+        ]
+    },
+    "CN": {
+        "AT": [
+            {
+                "index": 80,
+                "time_seconds": 31560,
+                "work": 181.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 94,
+                "time_seconds": null,
+                "work": null
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 94,
+                "time_seconds": 33900,
+                "work": 200.0
+            }
+        ]
+    },
+    "SG": {
+        "AT": [
+            {
+                "index": 53,
+                "time_seconds": 31560,
+                "work": 181.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 65,
+                "time_seconds": 33600,
+                "work": 198.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 67,
+                "time_seconds": 33900,
+                "work": 200.0
+            }
+        ]
+    },
+    "AA": {
+        "AT": [
+            {
+                "index": 161,
+                "time_seconds": 36540,
+                "work": 239.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 193,
+                "time_seconds": 41520,
+                "work": 280.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 194,
+                "time_seconds": 41700,
+                "work": 282.0
+            }
+        ]
+    },
+    "MS": {
+        "AT": [
+            {
+                "index": 109,
+                "time_seconds": 31320,
+                "work": 197.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 134,
+                "time_seconds": 35340,
+                "work": 230.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 147,
+                "time_seconds": 37080,
+                "work": 244.0
+            }
+        ]
+    },
+    "GE": {
+        "AT": [
+            {
+                "index": 145,
+                "time_seconds": 33720,
+                "work": 180.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 169,
+                "time_seconds": 36600,
+                "work": 200.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 184,
+                "time_seconds": 38100,
+                "work": 211.0
+            }
+        ]
+    },
+    "PT": {
+        "AT": [
+            {
+                "index": 83,
+                "time_seconds": 32940,
+                "work": 211.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 90,
+                "time_seconds": 34500,
+                "work": 224.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 93,
+                "time_seconds": 35100,
+                "work": 229.0
+            }
+        ]
+    },
+    "CM": {
+        "AT": [
+            {
+                "index": 111,
+                "time_seconds": 34620,
+                "work": 146.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 134,
+                "time_seconds": 38400,
+                "work": 167.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 146,
+                "time_seconds": 40500,
+                "work": 179.0
+            }
+        ]
+    },
+    "CN2": {
+        "AT": [
+            {
+                "index": 80,
+                "time_seconds": 39420,
+                "work": 69.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 116,
+                "time_seconds": 44520,
+                "work": 112.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 140,
+                "time_seconds": 47460,
+                "work": 136.0
+            }
+        ]
+    },
+    "CG": {
+        "AT": [
+            {
+                "index": 79,
+                "time_seconds": 33000,
+                "work": 114.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 127,
+                "time_seconds": 44400,
+                "work": 177.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 136,
+                "time_seconds": 46680,
+                "work": 25.0
+            }
+        ]
+    },
+    "MP": {
+        "AT": [
+            {
+                "index": 162,
+                "time_seconds": 35340,
+                "work": 155.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 195,
+                "time_seconds": 39840,
+                "work": 180.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 204,
+                "time_seconds": 40860,
+                "work": 186.0
+            }
+        ]
+    },
+    "IL": {
+        "AT": [
+            {
+                "index": 68,
+                "time_seconds": 28260,
+                "work": 75.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 112,
+                "time_seconds": 36120,
+                "work": 129.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 118,
+                "time_seconds": 36960,
+                "work": 135.0
+            }
+        ]
+    },
+    "GR": {
+        "AT": [
+            {
+                "index": 99,
+                "time_seconds": 30780,
+                "work": 152.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 102,
+                "time_seconds": 31320,
+                "work": 156.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 110,
+                "time_seconds": 32760,
+                "work": 166.0
+            }
+        ]
+    },
+    "VG": {
+        "AT": [
+            {
+                "index": 147,
+                "time_seconds": 34320,
+                "work": 184.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 182,
+                "time_seconds": 39180,
+                "work": 218.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 188,
+                "time_seconds": 39900,
+                "work": 223.0
+            }
+        ]
+    },
+    "GP": {
+        "AT": [
+            {
+                "index": 118,
+                "time_seconds": 29580,
+                "work": 153.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 166,
+                "time_seconds": 35220,
+                "work": 200.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 178,
+                "time_seconds": 36600,
+                "work": 211.0
+            }
+        ]
+    },
+    "GM": {
+        "AT": [
+            {
+                "index": 117,
+                "time_seconds": 28860,
+                "work": 173.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 170,
+                "time_seconds": null,
+                "work": null
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 163,
+                "time_seconds": 35280,
+                "work": 226.0
+            }
+        ]
+    },
+    "SL": {
+        "AT": [
+            {
+                "index": 90,
+                "time_seconds": 31320,
+                "work": 195.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 108,
+                "time_seconds": 34260,
+                "work": 219.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 114,
+                "time_seconds": 35160,
+                "work": 227.0
+            }
+        ]
+    },
+    "CL": {
+        "AT": [
+            {
+                "index": 147,
+                "time_seconds": 28980,
+                "work": 118.0
+            }
+        ],
+        "RC": [
+            {
+                "index": 200,
+                "time_seconds": 35220,
+                "work": 152.0
+            }
+        ],
+        "VO2 MAX": [
+            {
+                "index": 202,
+                "time_seconds": 35400,
+                "work": 153.0
+            }
+        ]
+    }
+}

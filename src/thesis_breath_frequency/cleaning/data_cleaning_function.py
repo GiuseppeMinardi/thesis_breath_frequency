@@ -22,6 +22,7 @@ from ..__init__ import logger
 from ._cleaning_utils import (
     convert_time_to_seconds,
     correct_df_dtypes,
+    find_breakpoints,
     normalize_columns,
     rename_columns,
 )
@@ -80,19 +81,29 @@ def _get_skip_rows(sheet_name: str) -> int:
     return skip_rows_map.get(sheet_name)
 
 
-def load_and_process_excel(source_excel_path: Path) -> pd.DataFrame:
-    """
-    Load and process Excel file with multiple sheet tabs.
+def load_and_process_excel(source_excel_path: Path) -> tuple[pd.DataFrame, dict]:
+    """Load and process Excel file containing respiratory data for multiple patients.
 
-    Args:
-        source_excel_path: Path to the Excel file to process.
+    Reads an Excel workbook, processes each valid patient sheet by normalizing
+    columns, converting data types, and concatenating results into a single DataFrame.
+
+    Parameters
+    ----------
+    source_excel_path : Path
+        Path to the Excel file containing patient respiratory data sheets.
 
     Returns
     -------
-        A concatenated DataFrame with processed data from all valid sheets.
+    tuple[pd.DataFrame, dict]
+        A tuple containing:
+        - pd.DataFrame: Concatenated processed data from all valid sheets.
+        - dict: Mapping of sheet names to their identified breakpoints.
     """
     dataframes = []
-    for sheet_name in load_workbook(source_excel_path, read_only=True).sheetnames:
+    breakpoints = {}
+
+    workbook = load_workbook(source_excel_path, read_only=True)
+    for sheet_name in workbook.sheetnames:
         logger.info(f"Processing sheet: {sheet_name}")
         skip_to_row = _get_skip_rows(sheet_name)
         if skip_to_row is None:
@@ -100,6 +111,7 @@ def load_and_process_excel(source_excel_path: Path) -> pd.DataFrame:
             continue
         logger.debug(f"Processing sheet '{sheet_name}' with skip_to_row={skip_to_row}")
 
+        breakpoints[sheet_name] = find_breakpoints(workbook=workbook, sheet_name=sheet_name, skiprows=skip_to_row)
         dataframes.append(
             pd.read_excel(
                 source_excel_path,
@@ -120,4 +132,4 @@ def load_and_process_excel(source_excel_path: Path) -> pd.DataFrame:
             .pipe(rename_columns)
         )
     logger.info(f"Processed {len(dataframes)} sheets from the Excel file.")
-    return pd.concat(dataframes)
+    return pd.concat(dataframes), breakpoints

@@ -1,3 +1,5 @@
+import openpyxl
+
 import pandas as pd
 
 
@@ -63,3 +65,92 @@ def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
         "time_seconds": "time_seconds",
     }
     return df.rename(columns=rename_mapping)
+
+def find_breakpoints(
+    workbook: openpyxl.Workbook,
+    sheet_name: str,
+    skiprows: int,
+    targets: list[str] | None = None,
+    stop_when_all_found: bool = True,
+    max_rows: int | None = None,
+) -> dict[str, list[int]]:
+    if targets is None:
+        # Aggiunto "V02 MAX" con lo zero per matchare i refusi nei file grezzi
+        targets = ["AT", "RC", "VO2 MAX", "V02 MAX"]
+
+    # Normalizza i target (maiuscolo e senza spazi)
+    normalized_to_label: dict[str, str] = {
+        str(t).strip().upper(): str(t) for t in targets
+    }
+
+    sheet = workbook[sheet_name]
+    # Each entry will be a list of dicts: {"index": int, "time_seconds": int|None, "work": float|None}
+    found: dict[str, list[dict]] = {label: [] for label in normalized_to_label.values()}
+
+    # CONTATORE CRITICO: tiene traccia di quante righe di testo abbiamo
+    # già incontrato, per sottrarle dall'indice Pandas
+    markers_found_count = 0
+
+    for row_idx, row in enumerate(sheet.iter_rows(values_only=True), start=1):
+        if max_rows is not None and row_idx > max_rows:
+            break
+
+        if not row or row[0] is None:
+            continue
+
+        cell_value = str(row[0]).strip().upper()
+
+        if cell_value in normalized_to_label:
+            label = normalized_to_label[cell_value]
+
+            # Calcolo dell'indice Pandas corretto:
+            # -1 per passare a 0-based
+            # -markers_found_count per compensare le righe target precedenti che verranno droppate
+            pandas_idx = (row_idx - skiprows) - 1 - markers_found_count
+
+            # Se hai "V02 MAX" come refuso, puoi forzarlo a raggrupparsi sotto "VO2 MAX"
+            if label == "V02 MAX":
+                label = "VO2 MAX"
+                if label not in found:
+                    found[label] = []
+
+            # Try to read the data row following the marker to capture time and work.
+            time_seconds = None
+            work_val = None
+            try:
+                # The data row that corresponds to the pandas index is typically the
+                # row immediately after the marker row in the raw sheet.
+                data_row_number = row_idx + 1
+                time_cell = sheet.cell(row=data_row_number, column=1).value
+                work_cell = sheet.cell(row=data_row_number, column=2).value
+
+                if time_cell is not None:
+                    try:
+                        time_seconds = convert_time_to_seconds(str(time_cell))
+                    except Exception:
+                        time_seconds = None
+
+                if work_cell is not None:
+                    try:
+                        work_val = float(str(work_cell).strip())
+                    except Exception:
+                        work_val = None
+            except Exception:
+                time_seconds = None
+                work_val = None
+
+            found[label].append(
+                {
+                    "index": pandas_idx,
+                    "time_seconds": time_seconds,
+                    "work": work_val,
+                }
+            )
+            markers_found_count += 1
+
+        # Stop anticipato se tutti i target hanno almeno un valore
+        if stop_when_all_found and all(found[lbl] for lbl in ["AT", "RC", "VO2 MAX"]):
+            break
+
+    # Rimuove le entry vuote
+    return {k: v for k, v in found.items() if v}

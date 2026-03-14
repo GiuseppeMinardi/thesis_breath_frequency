@@ -1,3 +1,5 @@
 start,end,note
 07/02/2026_20:40,07/02/2026_22:20,"Data Cleaning, ho cercato di far quadrare l'excel"
 08/02/2026_13:40,08/02/2026_14:23,"Refactored the cleaning code"
+07/03/2026_11:50,07/03/2026_12:30,"Added code to create the breakpoints"
+14/03/2026_20:37,14/03/2026_21:40,"Started data exploration, fixing bugs"
