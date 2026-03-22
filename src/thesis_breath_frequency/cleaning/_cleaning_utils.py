@@ -66,6 +66,31 @@ def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
     }
     return df.rename(columns=rename_mapping)
 
+def statistica_to_jsonl(excel_file, sheet_name) -> list[dict]:
+    wb = openpyxl.load_workbook(excel_file, data_only=True)
+    ws = wb[sheet_name]
+
+    jsonl_entries = []
+
+    # Starting from row 3 (after the header rows in your sheet structure)
+    # The subjects start in column A (1), VT1_RR in B (2), VT1_GET in C (3)...
+    for row in ws.iter_rows(min_row=3, max_col=5, values_only=True):
+        subject, vt1_rr, vt1_get, vt2_rr, vt2_get = row
+
+        # Only process rows that have a subject name
+        if subject:
+            entry = {
+                "subject": str(subject),
+                "VT1_RR": vt1_rr,
+                "VT1_GET": vt1_get,
+                "VT2_RR": vt2_rr,
+                "VT2_GET": vt2_get,
+            }
+            jsonl_entries.append(entry)
+
+    return jsonl_entries
+
+
 def find_breakpoints(
     workbook: openpyxl.Workbook,
     sheet_name: str,

@@ -25,6 +25,7 @@ from ._cleaning_utils import (
     find_breakpoints,
     normalize_columns,
     rename_columns,
+    statistica_to_jsonl,
 )
 
 header = [
@@ -81,23 +82,27 @@ def _get_skip_rows(sheet_name: str) -> int:
     return skip_rows_map.get(sheet_name)
 
 
-def load_and_process_excel(source_excel_path: Path) -> tuple[pd.DataFrame, dict]:
-    """Load and process Excel file containing respiratory data for multiple patients.
+def load_and_process_excel(
+    source_excel_path: Path,
+) -> tuple[pd.DataFrame, dict, list[dict]]:
+    """Load and process Excel file with multiple respiratory data sheets.
 
-    Reads an Excel workbook, processes each valid patient sheet by normalizing
-    columns, converting data types, and concatenating results into a single DataFrame.
+    Reads an Excel file containing patient respiratory data across multiple sheets,
+    normalizes columns, applies data type corrections, and concatenates all sheets
+    into a single DataFrame.
 
     Parameters
     ----------
     source_excel_path : Path
-        Path to the Excel file containing patient respiratory data sheets.
+        Path to the Excel file containing respiratory data sheets.
 
     Returns
     -------
-    tuple[pd.DataFrame, dict]
+    tuple[pd.DataFrame, dict, list[dict]]
         A tuple containing:
-        - pd.DataFrame: Concatenated processed data from all valid sheets.
-        - dict: Mapping of sheet names to their identified breakpoints.
+        - Concatenated DataFrame with processed data from all sheets
+        - Dictionary mapping sheet names to their breakpoints
+        - List of dictionaries with STATISTICA export data
     """
     dataframes = []
     breakpoints = {}
@@ -131,5 +136,9 @@ def load_and_process_excel(source_excel_path: Path) -> tuple[pd.DataFrame, dict]
             .pipe(correct_df_dtypes)
             .pipe(rename_columns)
         )
+
+    statistica_export = statistica_to_jsonl(
+        excel_file=source_excel_path, sheet_name="STATISTICA"
+    )
     logger.info(f"Processed {len(dataframes)} sheets from the Excel file.")
-    return pd.concat(dataframes), breakpoints
+    return pd.concat(dataframes), breakpoints, statistica_export

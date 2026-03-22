@@ -19,12 +19,15 @@ def data_cleaning(source_excel_path: Path, destination_folder: Path):
         source_excel_path: Path to the raw Excel file.
         destination_csv_path: Path where the cleaned CSV file will be saved.
     """
-    cleaned_excel, breakpoints = load_and_process_excel(
+    cleaned_excel, breakpoints, statistica_export = load_and_process_excel(
         source_excel_path=source_excel_path
     )
     cleaned_excel.to_csv(destination_folder.joinpath("cleaned_data.csv"), index=False)
     with destination_folder.joinpath("breakpoints.json").open("w") as f:
         json.dump(breakpoints, f, indent=4)
+    with destination_folder.joinpath("statistica_export.jsonl").open("w") as fs:
+        for entry in statistica_export:
+            fs.write(json.dumps(entry) + "\n")
 
 
 def main():
